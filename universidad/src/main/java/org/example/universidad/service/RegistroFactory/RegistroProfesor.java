@@ -19,11 +19,22 @@ public class RegistroProfesor implements Registro {
         nuevaPersona.setCedula(persona.getCedula());
         nuevaPersona.setCorreo(persona.getCorreo());
         nuevaPersona.setTelefono(persona.getTelefono());
+        nuevaPersona.setTipo(persona.getTipo());
 
         Profesor profesor = new Profesor();
         profesor.setPersona(nuevaPersona);
         profesorRepository.save(profesor);
 
         return nuevaPersona;
+    }
+
+    @Override
+    public Persona eliminarPersona(Persona persona) {
+        Profesor profesor = profesorRepository.findProfesorByPersona(persona);
+        if (profesor != null) {
+            profesorRepository.delete(profesor);
+            return persona;
+        }
+        return null;
     }
 }

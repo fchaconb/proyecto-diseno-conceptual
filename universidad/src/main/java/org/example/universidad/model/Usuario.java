@@ -12,17 +12,17 @@ public class Usuario {
     @Column(unique = true, nullable = false, name = "usuario")
     private String usuario;
     private String contrasena;
-    private Rol rol;
+    private TipoPersona rol;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cedulaPersona", referencedColumnName = "cedula")
-    @JsonBackReference
+    @JsonManagedReference
     private Persona persona;
 
     public Usuario() {
     }
 
-    public Usuario(String usuario, String contrasena, Rol rol, Persona persona) {
+    public Usuario(String usuario, String contrasena, TipoPersona rol, Persona persona) {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.rol = rol;
@@ -45,11 +45,11 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    public Rol getRol() {
+    public TipoPersona getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(TipoPersona rol) {
         this.rol = rol;
     }
 

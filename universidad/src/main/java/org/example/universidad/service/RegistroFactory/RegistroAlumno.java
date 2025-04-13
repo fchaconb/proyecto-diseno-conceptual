@@ -21,11 +21,22 @@ public class RegistroAlumno implements Registro {
         nuevaPersona.setCedula(persona.getCedula());
         nuevaPersona.setCorreo(persona.getCorreo());
         nuevaPersona.setTelefono(persona.getTelefono());
+        nuevaPersona.setTipo(persona.getTipo());
 
         Alumno alumno = new Alumno();
         alumno.setPersona(nuevaPersona);
         alumnoRepository.save(alumno);
 
         return nuevaPersona;
+    }
+
+    @Override
+    public Persona eliminarPersona(Persona persona) {
+        Alumno alumno = alumnoRepository.findAlumnoByPersona(persona);
+        if (alumno != null) {
+            alumnoRepository.delete(alumno);
+            return persona;
+        }
+        return null;
     }
 }

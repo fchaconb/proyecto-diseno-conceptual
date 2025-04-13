@@ -1,5 +1,6 @@
 package org.example.universidad.controller;
 
+import org.example.universidad.dto.PersonaRequest;
 import org.example.universidad.model.Persona;
 import org.example.universidad.service.PersonaService;
 import org.example.universidad.service.RegistroFactory.*;
@@ -20,9 +21,11 @@ public class PersonaController {
     private RegistroFactory registroFactory;
 
     @PostMapping("/crear")
-    public Persona createPersona(@RequestParam String tipo, @RequestBody Persona persona) {
-        Registro registro = registroFactory.getRegistro(tipo);
-        return personaService.crearPersona(registro, persona);
+    public Persona createPersona(@RequestBody PersonaRequest personaRequest) {
+        Persona persona = personaRequest.getPersona();
+        String password = personaRequest.getPassword();
+        Registro registro = registroFactory.getRegistro(persona.getTipo().toString());
+        return personaService.crearPersona(registro, persona, password);
     }
 
     @GetMapping("/listar")

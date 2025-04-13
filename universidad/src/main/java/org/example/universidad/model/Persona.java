@@ -1,5 +1,6 @@
 package org.example.universidad.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -14,9 +15,10 @@ public class Persona {
     private String nombre;
     private String correo;
     private long telefono;
+    private TipoPersona tipo;
 
     @OneToOne(mappedBy = "persona")
-    @JsonManagedReference
+    @JsonBackReference
     private Usuario usuario;
 
     @OneToOne(mappedBy = "persona")
@@ -38,11 +40,12 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(long cedula, String nombre, String correo, long telefono) {
+    public Persona(long cedula, String nombre, String correo, long telefono, TipoPersona tipo) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
+        this.tipo = tipo;
     }
 
     public long getCedula() {
@@ -75,6 +78,13 @@ public class Persona {
 
     public void setTelefono(long telefono) {
         this.telefono = telefono;
+    }
+
+    public TipoPersona getTipo() {
+        return tipo;
+    }
+    public void setTipo(TipoPersona tipo) {
+        this.tipo = tipo;
     }
 
     public Usuario getUsuario() {

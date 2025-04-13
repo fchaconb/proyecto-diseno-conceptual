@@ -18,11 +18,22 @@ public class RegistroMatriculador implements Registro{
         nuevaPersona.setCedula(persona.getCedula());
         nuevaPersona.setCorreo(persona.getCorreo());
         nuevaPersona.setTelefono(persona.getTelefono());
+        nuevaPersona.setTipo(persona.getTipo());
 
         Matriculador matriculador = new Matriculador();
         matriculador.setPersona(nuevaPersona);
         matriculadorRepository.save(matriculador);
 
         return nuevaPersona;
+    }
+
+    @Override
+    public Persona eliminarPersona(Persona persona) {
+        Matriculador matriculador = matriculadorRepository.findMatriculadorByPersona(persona);
+        if (matriculador != null) {
+            matriculadorRepository.delete(matriculador);
+            return persona;
+        }
+        return null;
     }
 }

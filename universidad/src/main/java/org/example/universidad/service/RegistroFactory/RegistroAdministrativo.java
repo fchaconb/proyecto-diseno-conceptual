@@ -20,11 +20,22 @@ public class RegistroAdministrativo implements Registro{
         nuevaPersona.setCedula(persona.getCedula());
         nuevaPersona.setCorreo(persona.getCorreo());
         nuevaPersona.setTelefono(persona.getTelefono());
+        nuevaPersona.setTipo(persona.getTipo());
 
         Administrativo administrativo = new Administrativo();
         administrativo.setPersona(nuevaPersona);
         administrativoRepository.save(administrativo);
 
         return nuevaPersona;
+    }
+
+    @Override
+    public Persona eliminarPersona(Persona persona) {
+        Administrativo administrativo = administrativoRepository.findAdministrativoByPersona(persona);
+        if (administrativo != null) {
+            administrativoRepository.delete(administrativo);
+            return persona;
+        }
+        return null;
     }
 }
