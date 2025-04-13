@@ -56,4 +56,20 @@ public class Carrera {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
+    public Set<Alumno> getAlumnos() {
+        return alumnos;
+    }
+
+    public void setAlumnos(Set<Alumno> alumnos) {
+        this.alumnos = alumnos;
+    }
+
+    public Set<Ciclo> getCiclos() {
+        return ciclos;
+    }
+
+    public void setCiclos(Set<Ciclo> ciclos) {
+        this.ciclos = ciclos;
+    }
 }
