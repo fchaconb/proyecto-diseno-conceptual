@@ -41,4 +41,13 @@ public class GrupoController {
         grupoService.eliminarGrupo(codigo);
     }
 
+    @PutMapping("/agregarAlumno/{codigo}/{cedula}")
+    public Grupo agregarAlumnoAGrupo(@PathVariable String codigo, @PathVariable long cedula) {
+        return grupoService.agregarAlumnoAGrupo(codigo, cedula);
+    }
+
+    @PutMapping("/eliminarAlumno/{codigo}/{cedula}")
+    public Grupo eliminarAlumnoDeGrupo(@PathVariable String codigo, @PathVariable long cedula) {
+        return grupoService.eliminarAlumnoDeGrupo(codigo, cedula);
+    }
 }
