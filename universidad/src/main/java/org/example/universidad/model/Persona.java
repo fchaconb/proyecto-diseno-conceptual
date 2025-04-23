@@ -17,24 +17,24 @@ public class Persona {
     private long telefono;
     private TipoPersona tipo;
 
-    @OneToOne(mappedBy = "persona")
-    @JsonBackReference
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "persona-usuario")
     private Usuario usuario;
 
-    @OneToOne(mappedBy = "persona")
-    @JsonIgnore
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "persona-administrativo")
     private Administrativo administrativo;
 
-    @OneToOne(mappedBy = "persona")
-    @JsonIgnore
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "persona-matriculador")
     private Matriculador matriculador;
 
-    @OneToOne(mappedBy = "persona")
-    @JsonIgnore
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "persona-profesor")
     private Profesor profesor;
 
-    @OneToOne(mappedBy = "persona")
-    @JsonIgnore
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "persona-alumno")
     private Alumno alumno;
 
     public Persona() {

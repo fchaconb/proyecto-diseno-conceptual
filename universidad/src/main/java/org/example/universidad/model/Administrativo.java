@@ -1,5 +1,6 @@
 package org.example.universidad.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class Administrativo {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cedulaPersona", referencedColumnName = "cedula")
+    @JsonManagedReference(value = "persona-administrativo")
     private Persona persona;
 
     public Administrativo() {

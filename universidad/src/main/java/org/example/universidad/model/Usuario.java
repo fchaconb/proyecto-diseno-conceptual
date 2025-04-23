@@ -16,7 +16,7 @@ public class Usuario {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cedulaPersona", referencedColumnName = "cedula")
-    @JsonManagedReference
+    @JsonManagedReference(value = "persona-usuario")
     private Persona persona;
 
     public Usuario() {
